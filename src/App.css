@@ -1,0 +1,16 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: aliceblue;
+}
+.cell {
+    border: 1px solid gray;
+}
+.cell-alive {
+    background-color: black;
+}
+.cell-dead {
+    background-color: white;
+}
