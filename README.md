@@ -1,4 +1,4 @@
-#Life game
+# Life game
 ## run - npm run dev
 ### you can change number of rows and columns and update time in the matrix-config file
 class **LifeGameService** contains game logic, <br>
