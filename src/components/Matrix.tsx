@@ -6,20 +6,14 @@ import LifeGameService from '../services/LifeGameService';
 function Matrix() {
     const { rows, columns, ticInterval } = matrixData;
     const [matrix, setMatrix] = React.useState<number[][]>([]);
-    const lifeGame = React.useRef<LifeGameService>(null);
-
-    React.useEffect(() => {
-        lifeGame.current = new LifeGameService(getRandomIntMatrix(rows, columns, 0, 1));
-        setMatrix(lifeGame.current.getMatrix());
-    }, [rows, columns]);
-
+    const lifeGame :LifeGameService = React.useMemo(() => new LifeGameService(getRandomIntMatrix(rows, columns, 0, 1)), [rows, columns]);
     React.useEffect(() => {
         function tic() {
-            setMatrix(lifeGame.current!.nextMatrix());
+            setMatrix(lifeGame.nextMatrix());
         }
         const intervalId = setInterval(tic, ticInterval);
         return () => clearInterval(intervalId);
-    }, [ticInterval]);
+    }, [ticInterval, lifeGame]);
     function getCells(matrix: number[][]): React.ReactNode {
         return matrix.map((row, rInd) => {
             return row.map((cellValue, cInd) =>
